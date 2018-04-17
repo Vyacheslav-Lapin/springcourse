@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/util  http://www.springframework.org/schema/util/spring-util.xsd">
+
+    <bean id="person" class="ru.sbt.courses.spring.demo.SimplePerson">
+        <constructor-arg name="age" value="17"/>
+        <constructor-arg name="broke" value="true"/>
+        <constructor-arg name="firstName" value="John"/>
+        <constructor-arg name="lastName" value="Smith"/>
+        <constructor-arg name="height" value="1.78"/>
+        <constructor-arg name="isProgrammer" value="true"/>
+        <constructor-arg name="country" ref="country"/>
+        <constructor-arg name="contacts" ref="contacts"/>
+    </bean>
+
+    <bean id="country" class="ru.sbt.courses.spring.demo.SimpleCountry">
+        <constructor-arg name="id" value="1"/>
+        <constructor-arg name="name" value="Russia"/>
+        <constructor-arg name="codeName" value="RU"/>
+    </bean>
+    <util:list id="contacts" value-type="ru.sbt.courses.spring.demo.Contact">
+        <bean class="ru.sbt.courses.spring.demo.SimpleContact">
+            <constructor-arg name="type" value="Telephone"/>
+            <constructor-arg name="value" value="+7(905)222-33-22"/>
+        </bean>
+    </util:list>
+</beans>

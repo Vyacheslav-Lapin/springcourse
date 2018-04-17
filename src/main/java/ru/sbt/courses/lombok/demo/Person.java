@@ -1,5 +1,7 @@
 package ru.sbt.courses.lombok.demo;
 
+import ru.sbt.courses.spring.demo.Country;
+
 import java.util.List;
 
 public interface Person {
@@ -11,9 +13,9 @@ public interface Person {
 
 //    Person setName(String name);
 
-    Country getCountry();
+    Country getSimpleCountry();
 
-//    Person setCountry(Country country);
+//    Person setCountry(SimpleCountry country);
 
     int getAge();
 
