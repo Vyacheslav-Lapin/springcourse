@@ -11,7 +11,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class Politeness {
 
-    @Pointcut("execution(* sellSquishee(..))")
+//    @Pointcut("execution(* sellSquishee(..))")
+    @Pointcut("@annotation(Polite)")
     private void pointcut() {
     }
 

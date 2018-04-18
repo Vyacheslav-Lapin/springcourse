@@ -1,5 +1,6 @@
 package aop;
 
+import io.vavr.Function0;
 import io.vavr.Tuple;
 import io.vavr.Tuple2;
 import lombok.experimental.UtilityClass;
@@ -14,24 +15,28 @@ import java.util.function.Supplier;
 public class TestUtil {
 
     public String getFromOut(Runnable runnable) {
-        return withProxyForOut(byteArraySupplyer -> {
+        return withProxyForOut(soutExtractor -> {
             runnable.run();
-            return new String(byteArraySupplyer.get()).intern();
+            return soutExtractor.get();
         });
     }
 
     public <T> Tuple2<T, String> getFromOut(Supplier<T> supplier) {
-        return withProxyForOut(byteArraySupplyer -> Tuple.of(
-                supplier.get(),
-                new String(byteArraySupplyer.get()).intern()));
+        return withProxyForOut(soutExtractor -> Tuple.of(
+                supplier.get(), soutExtractor.get()));
     }
 
-    private <T> T withProxyForOut(Function<Supplier<byte[]>, T> mapper) {
+    private <T> T withProxyForOut(Function<Supplier<String>, T> soutExtractorMapper) {
         val realOut = System.out;
         val out = new ByteArrayOutputStream();
+
+        Supplier<String> soutExtractor = Function0.of(out::toByteArray)
+                .andThen(String::new)
+                .andThen(String::intern);
+
         try (val printStream = new PrintStream(out)) {
             System.setOut(printStream);
-            return mapper.apply(out::toByteArray);
+            return soutExtractorMapper.apply(soutExtractor);
         } finally {
             System.setOut(realOut);
         }
