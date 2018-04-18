@@ -11,7 +11,7 @@ import java.util.Arrays;
 import java.util.List;
 
 @Configuration
-@ImportResource("classpath*:ioc-di.xml")
+@ImportResource("classpath*:aop.xml")
 @ComponentScan("lab.model")
 public class JavaConfig {
 

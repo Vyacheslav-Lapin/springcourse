@@ -17,5 +17,7 @@ public class UsualPerson implements Person {
     float height;
     boolean isProgrammer;
 
+    boolean broke;
+
     List<Contact> contacts;
 }

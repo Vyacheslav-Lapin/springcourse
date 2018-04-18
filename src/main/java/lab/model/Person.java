@@ -17,6 +17,8 @@ public interface Person {
 
     List<Contact> getContacts();
 
+    boolean isBroke();
+
     default void sayHello(Person person) {
         System.out.printf("Hello, %s!%n", person);
     }

@@ -23,6 +23,7 @@ class HelloWorldTest {
                 35,
                 1.78f,
                 true,
+                false,
                 Arrays.asList(
                         new SimpleContact("TELEPHONE", "+7(905)222-33-22"),
                         new SimpleContact("EMAIL", "dagf@mf.com")));
