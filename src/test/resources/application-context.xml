@@ -1,13 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:p="http://www.springframework.org/schema/p"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:c="http://www.springframework.org/schema/c"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/util  http://www.springframework.org/schema/util/spring-util.xsd">
 
     <bean id="person" class="lab.model.UsualPerson"
-          p:name="John Smith" p:age="35" p:country-ref="country"/>
+          c:id="1"
+          c:name="John Smith"
+          c:age="35"
+          c:country-ref="country"
+          c:isProgrammer="true"
+          c:height="1.78"
+          c:contacts-ref="contacts"/>
 
-    <bean id="country" class="lab.model.Country"
-          p:id="1" p:name="Russia" p:codeName="RU"/>
+    <bean id="country" class="lab.model.SimpleCountry"
+          c:id="1" c:name="Russia" c:codeName="RU"/>
+
+    <util:list id="contacts" value-type="java.lang.String">
+        <value>222-33-22</value>
+        <value>dagf@mf.com</value>
+    </util:list>
 </beans>

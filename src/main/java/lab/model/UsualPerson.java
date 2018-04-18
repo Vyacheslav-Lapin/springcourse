@@ -2,7 +2,6 @@ package lab.model;
 
 import lombok.Value;
 
-import javax.persistence.*;
 import java.util.List;
 
 @Value
@@ -17,7 +16,4 @@ public class UsualPerson implements Person {
     boolean isProgrammer;
 
     List<String> contacts;
-
-    public void sayHello(Person person) {
-    }
 }

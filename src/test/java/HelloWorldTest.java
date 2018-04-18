@@ -1,13 +1,15 @@
-import lab.model.Country;
+import lab.model.SimpleCountry;
 import lab.model.Person;
 import lab.model.UsualPerson;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.BeanFactory;
-import org.springframework.context.support.FileSystemXmlApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.util.Arrays;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.core.Is.is;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class HelloWorldTest {
@@ -19,21 +21,21 @@ class HelloWorldTest {
 
     @BeforeEach
     void setUp() {
-        context = new FileSystemXmlApplicationContext(
+        context = new ClassPathXmlApplicationContext(
                 APPLICATION_CONTEXT_XML_FILE_NAME);
     }
 
     @Test
     void testInitPerson() {
-        assertEquals(getExpectedPerson(), context.getBean("person", Person.class));
+        assertThat(context.getBean("person", Person.class), is(getExpectedPerson()));
     }
 
     private Person getExpectedPerson() {
         return new UsualPerson(1, "John Smith",
-                new Country(1, "Russia", "RU"),
+                new SimpleCountry(1, "Russia", "RU"),
                 35,
                 1.78f,
                 true,
-                Arrays.asList("+7"));
+                Arrays.asList("222-33-22", "dagf@mf.com"));
     }
 }
