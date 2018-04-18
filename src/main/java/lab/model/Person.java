@@ -19,6 +19,8 @@ public interface Person {
 
     boolean isBroke();
 
+    Person withBroke(boolean broke);
+
     default void sayHello(Person person) {
         System.out.printf("Hello, %s!%n", person);
     }

@@ -4,38 +4,42 @@ import lab.model.Person;
 import lab.model.Squishee;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
-import org.aspectj.lang.annotation.AfterReturning;
-import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Before;
+import org.aspectj.lang.annotation.*;
 import org.springframework.stereotype.Component;
 
 @Aspect
 @Component
 public class Politeness {
 
-    @Before("execution(* sellSquishee(..))")
-    public void sayHello(JoinPoint joinPiont) {
-        AopLog.append("Hello " + ((Person) joinPiont.getArgs()[0]).getName() + ". How are you doing? \n");
+    @Pointcut("execution(* sellSquishee(..))")
+    private void pointcut() {
     }
 
-    @AfterReturning(pointcut = "execution(* sellSquishee(..))",
-            returning = "retVal", argNames = "retVal")
-    public void askOpinion(Object retVal) {
-        AopLog.append("Is " + ((Squishee) retVal).getName() + " Good Enough? \n");
+    @Before("pointcut() && args(person)")
+    public void sayHello(Person person) {
+        System.out.printf("Hello %s. How are you doing?%n", person.getName());
     }
 
+    @AfterReturning(pointcut = "pointcut()", returning = "retVal", argNames = "retVal")
+    public void askOpinion(Squishee retVal) {
+        System.out.printf("Is %s Good Enough?%n", retVal.getName());
+    }
+
+    @AfterThrowing("pointcut()")
     public void sayYouAreNotAllowed() {
-        AopLog.append("Hmmm... \n");
+        System.out.println("Hmmm...");
     }
 
+    @After("pointcut()")
     public void sayGoodBye() {
-        AopLog.append("Good Bye! \n");
+        System.out.println("Good Bye!");
     }
 
+    @Around("pointcut()")
     public Object sayPoliteWordsAndSell(ProceedingJoinPoint pjp) throws Throwable {
-        AopLog.append("Hi! \n");
+        System.out.println("Hi!");
         Object retVal = pjp.proceed();
-        AopLog.append("See you! \n");
+        System.out.println("See you!");
         return retVal;
     }
 

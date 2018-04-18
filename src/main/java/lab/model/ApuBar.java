@@ -1,6 +1,5 @@
 package lab.model;
 
-import lab.aop.AopLog;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -11,7 +10,7 @@ public class ApuBar implements Bar {
             throw new CustomerBrokenException(
                     String.format("Person %s is broke!", person.getName()));
 
-        AopLog.append("Here is your Squishee \n");
+        System.out.println("Here is your Squishee");
         return new Squishee("Usual Squishee");
     }
 }

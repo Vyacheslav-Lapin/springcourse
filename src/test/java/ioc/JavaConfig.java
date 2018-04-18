@@ -12,7 +12,7 @@ import java.util.List;
 
 @Configuration
 @ImportResource("classpath*:aop.xml")
-@ComponentScan("lab.model")
+@ComponentScan({"lab.model", "lab.aop"})
 public class JavaConfig {
 
     @Bean

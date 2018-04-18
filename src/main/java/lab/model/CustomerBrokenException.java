@@ -1,16 +1,10 @@
 package lab.model;
 
+import lombok.NoArgsConstructor;
 
+@NoArgsConstructor
 public class CustomerBrokenException extends RuntimeException {
-	public CustomerBrokenException(String message) {
+	CustomerBrokenException(String message) {
 		super(message);
-	}
-
-	public CustomerBrokenException(String message, Throwable cause) {
-		super(message, cause);
-	}
-
-	public CustomerBrokenException(Throwable cause) {
-		super(cause);
 	}
 }

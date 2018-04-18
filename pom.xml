@@ -16,6 +16,7 @@
 
     <dependencies>
 
+        <!-- Spring-core -->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
@@ -46,6 +47,11 @@
             <version>LATEST</version>
             <optional>true</optional>
         </dependency>
+        <dependency>
+            <groupId>io.vavr</groupId>
+            <artifactId>vavr</artifactId>
+            <version>LATEST</version>
+        </dependency>
 
         <!-- CODE GENERATION (Lombok & CheckerFramework) -->
         <dependency>
@@ -61,6 +67,7 @@
             <scope>provided</scope>
         </dependency>
 
+        <!-- Hibernate -->
         <dependency>
             <groupId>org.hibernate.javax.persistence</groupId>
             <artifactId>hibernate-jpa-2.1-api</artifactId>
@@ -91,7 +98,6 @@
             <artifactId>spring-test</artifactId>
             <version>LATEST</version>
         </dependency>
-
 
     </dependencies>
 
