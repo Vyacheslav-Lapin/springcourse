@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import java.util.Arrays;
 import java.util.Collections;
 
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -14,7 +13,7 @@ import static org.hamcrest.core.Is.is;
 
 class SimplePersonTest {
 
-    BeanFactory context = new ClassPathXmlApplicationContext("ioc.xml");
+    BeanFactory context = new ClassPathXmlApplicationContext("ioc-demo.xml");
 
     @Test
     @DisplayName("ioc works correctly")

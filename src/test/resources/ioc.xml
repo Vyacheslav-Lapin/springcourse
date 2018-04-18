@@ -1,31 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns:util="http://www.springframework.org/schema/util"
        xmlns:c="http://www.springframework.org/schema/c"
+       xmlns:util="http://www.springframework.org/schema/util"
        xsi:schemaLocation="
         http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/util  http://www.springframework.org/schema/util/spring-util.xsd">
 
-    <bean id="person" class="ru.sbt.courses.spring.demo.SimplePerson"
-          c:age="17"
-          c:broke="true"
-          c:firstName="John"
-          c:lastName="Smith"
-          c:height="1.78"
-          c:isProgrammer="true"
+    <bean id="person" class="lab.model.UsualPerson"
+          c:id="1"
+          c:name="John Smith"
+          c:age="35"
           c:country-ref="country"
+          c:isProgrammer="true"
+          c:height="1.78"
           c:contacts-ref="contacts"/>
 
-    <bean id="country" class="ru.sbt.courses.spring.demo.SimpleCountry">
-        <constructor-arg name="id" value="1"/>
-        <constructor-arg name="name" value="Russia"/>
-        <constructor-arg name="codeName" value="RU"/>
-    </bean>
-    <util:list id="contacts" value-type="ru.sbt.courses.spring.demo.Contact">
-        <bean class="ru.sbt.courses.spring.demo.SimpleContact">
-            <constructor-arg name="type" value="Telephone"/>
-            <constructor-arg name="value" value="+7(905)222-33-22"/>
-        </bean>
+    <bean id="country" class="lab.model.SimpleCountry"
+          c:id="1" c:name="Russia" c:codeName="RU"/>
+
+    <util:list id="contacts" value-type="java.lang.String">
+        <value>222-33-22</value>
+        <value>dagf@mf.com</value>
     </util:list>
 </beans>

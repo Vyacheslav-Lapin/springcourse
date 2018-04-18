@@ -1,3 +1,5 @@
+package ioc;
+
 import lab.model.SimpleCountry;
 import lab.model.Person;
 import lab.model.UsualPerson;
@@ -15,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class HelloWorldTest {
 
     static final String APPLICATION_CONTEXT_XML_FILE_NAME =
-            "application-context.xml";
+            "ioc.xml";
 
     private BeanFactory context;
 
@@ -30,7 +32,7 @@ class HelloWorldTest {
         assertThat(context.getBean("person", Person.class), is(getExpectedPerson()));
     }
 
-    private Person getExpectedPerson() {
+    static Person getExpectedPerson() {
         return new UsualPerson(1, "John Smith",
                 new SimpleCountry(1, "Russia", "RU"),
                 35,
