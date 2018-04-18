@@ -15,7 +15,7 @@ public interface Person {
 
     boolean isProgrammer();
 
-    List<String> getContacts();
+    List<Contact> getContacts();
 
     default void sayHello(Person person) {
         System.out.printf("Hello, %s!%n", person);

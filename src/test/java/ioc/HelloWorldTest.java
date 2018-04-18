@@ -1,36 +1,21 @@
 package ioc;
 
-import lab.model.SimpleCountry;
 import lab.model.Person;
+import lab.model.SimpleContact;
+import lab.model.SimpleCountry;
 import lab.model.UsualPerson;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.BeanFactory;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import java.util.Arrays;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class HelloWorldTest {
 
-    static final String APPLICATION_CONTEXT_XML_FILE_NAME =
-            "ioc.xml";
-
-    private BeanFactory context;
-
-    @BeforeEach
-    void setUp() {
-        context = new ClassPathXmlApplicationContext(
-                APPLICATION_CONTEXT_XML_FILE_NAME);
-    }
-
-    @Test
-    void testInitPerson() {
-        assertThat(context.getBean("person", Person.class), is(getExpectedPerson()));
-    }
+    static AnnotationConfigApplicationContext context =
+            new AnnotationConfigApplicationContext("ioc");
 
     static Person getExpectedPerson() {
         return new UsualPerson(1, "John Smith",
@@ -38,6 +23,13 @@ class HelloWorldTest {
                 35,
                 1.78f,
                 true,
-                Arrays.asList("222-33-22", "dagf@mf.com"));
+                Arrays.asList(
+                        new SimpleContact("TELEPHONE", "+7(905)222-33-22"),
+                        new SimpleContact("EMAIL", "dagf@mf.com")));
+    }
+
+    @Test
+    void testInitPerson() {
+        assertThat(context.getBean("person", Person.class), is(getExpectedPerson()));
     }
 }

@@ -1,5 +1,6 @@
 package ru.sbt.courses.spring.demo;
 
+import lab.model.SimpleContact;
 import org.jetbrains.annotations.NotNull;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

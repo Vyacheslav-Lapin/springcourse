@@ -1,5 +1,6 @@
 package ioc;
 
+import lab.model.Person;
 import lab.model.UsualPerson;
 import lombok.experimental.FieldDefaults;
 import org.junit.jupiter.api.Test;
@@ -14,12 +15,12 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 
 @ExtendWith(SpringExtension.class)
-@ContextConfiguration("classpath:ioc.xml")
+@ContextConfiguration(classes = JavaConfig.class)
 @FieldDefaults(level = PRIVATE)
 class SpringTCFAppTest {
 	
 	@Autowired
-	UsualPerson person;
+    Person person;
 
 	@Test
 	void testInitPerson() {

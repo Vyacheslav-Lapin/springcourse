@@ -1,10 +1,12 @@
 package lab.model;
 
 import lombok.Value;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
 @Value
+@Component("person")
 public class UsualPerson implements Person {
     int id;
     String name;
@@ -15,5 +17,5 @@ public class UsualPerson implements Person {
     float height;
     boolean isProgrammer;
 
-    List<String> contacts;
+    List<Contact> contacts;
 }

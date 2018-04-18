@@ -1,4 +1,4 @@
-package ru.sbt.courses.spring.demo;
+package lab.model;
 
 public interface Contact {
     String getType();

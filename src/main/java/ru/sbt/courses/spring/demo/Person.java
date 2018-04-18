@@ -1,5 +1,7 @@
 package ru.sbt.courses.spring.demo;
 
+import lab.model.Contact;
+
 public interface Person {
     String getFirstName();
 
