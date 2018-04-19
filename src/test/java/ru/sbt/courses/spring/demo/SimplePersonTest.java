@@ -25,7 +25,8 @@ class SimplePersonTest {
 
     @NotNull
     private SimplePerson getExpectedPerson() {
-        return new SimplePerson("John",
+        return new SimplePerson(
+                "John",
                 "Smith",
                 new SimpleCountry(1, "Russia", "RU"),
                 17,

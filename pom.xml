@@ -69,10 +69,22 @@
 
         <!-- Hibernate -->
         <dependency>
-            <groupId>org.hibernate.javax.persistence</groupId>
-            <artifactId>hibernate-jpa-2.1-api</artifactId>
-            <version>1.0.0.Final</version>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>LATEST</version>
         </dependency>
+
+        <!-- H2 -->
+        <dependency>
+        	<groupId>com.h2database</groupId>
+        	<artifactId>h2</artifactId>
+            <version>LATEST</version>
+        	<scope>test</scope>
+        </dependency>
+        <!--driver org.h2.Driver-->
+        <!--url jdbc:h2:mem:test;DB_CLOSE_DELAY=-1-->
+        <!--<dependency><groupId>com.zaxxer</groupId><artifactId>HikariCP</artifactId><version>LATEST</version></dependency>-->
+
         
         <!-- TEST (JUnit 5 & Mockito) -->
         <dependency>

@@ -18,7 +18,9 @@ class HelloWorldTest {
             new AnnotationConfigApplicationContext("ioc");
 
     static Person getExpectedPerson() {
-        return new UsualPerson(1, "John Smith",
+        return new UsualPerson(
+                1,
+                "John Smith",
                 new SimpleCountry(1, "Russia", "RU"),
                 35,
                 1.78f,

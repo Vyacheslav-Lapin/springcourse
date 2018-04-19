@@ -7,25 +7,25 @@
         http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/util  http://www.springframework.org/schema/util/spring-util.xsd">
 
-    <bean id="person" class="ru.sbt.courses.spring.demo.SimplePerson"
-          c:age="17"
-          c:broke="true"
-          c:firstName="John"
-          c:lastName="Smith"
-          c:height="1.78"
-          c:isProgrammer="true"
-          c:country-ref="country"
-          c:contacts-ref="contacts"/>
+<bean id="person" class="ru.sbt.courses.spring.demo.SimplePerson"
+      c:age="17"
+      c:broke="true"
+      c:firstName="John"
+      c:lastName="Smith"
+      c:height="1.78"
+      c:isProgrammer="true"
+      c:country-ref="country"
+      c:contacts-ref="contacts"/>
 
-    <bean id="country" class="ru.sbt.courses.spring.demo.SimpleCountry">
-        <constructor-arg name="id" value="1"/>
-        <constructor-arg name="name" value="Russia"/>
-        <constructor-arg name="codeName" value="RU"/>
+<bean id="country" class="ru.sbt.courses.spring.demo.SimpleCountry">
+    <constructor-arg name="id" value="1"/>
+    <constructor-arg name="name" value="Russia"/>
+    <constructor-arg name="codeName" value="RU"/>
+</bean>
+<util:list id="contacts" value-type="lab.model.Contact">
+    <bean class="lab.model.SimpleContact">
+        <constructor-arg name="type" value="Telephone"/>
+        <constructor-arg name="value" value="+7(905)222-33-22"/>
     </bean>
-    <util:list id="contacts" value-type="lab.model.Contact">
-        <bean class="lab.model.SimpleContact">
-            <constructor-arg name="type" value="Telephone"/>
-            <constructor-arg name="value" value="+7(905)222-33-22"/>
-        </bean>
-    </util:list>
+</util:list>
 </beans>

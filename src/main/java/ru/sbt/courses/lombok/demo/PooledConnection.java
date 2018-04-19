@@ -6,8 +6,6 @@ import lombok.experimental.FieldDefaults;
 
 import java.io.Closeable;
 import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 
 import static lombok.AccessLevel.PRIVATE;
 

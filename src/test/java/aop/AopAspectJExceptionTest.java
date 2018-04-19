@@ -1,33 +1,33 @@
 package aop;
 
-import io.vavr.Tuple2;
 import ioc.JavaConfig;
 import lab.model.Bar;
 import lab.model.CustomerBrokenException;
 import lab.model.Person;
-import org.hamcrest.core.Is;
-import org.hamcrest.core.StringContains;
+import lombok.AllArgsConstructor;
+import lombok.experimental.FieldDefaults;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import static aop.TestUtil.getSoutFrom;
+import static lombok.AccessLevel.PRIVATE;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.StringContains.containsString;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.springframework.test.util.AssertionErrors.assertTrue;
 
+@FieldDefaults(level = PRIVATE)
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = JavaConfig.class)
+@AllArgsConstructor(onConstructor = @__(@Autowired))
 class AopAspectJExceptionTest {
 
-    @Autowired
     Bar bar;
 
-    @Autowired
     Person person;
 
     @BeforeEach
@@ -36,12 +36,12 @@ class AopAspectJExceptionTest {
     }
 
     @Test
+    @DisplayName("Customer is broken")
     void testAfterThrowingAdvice() {
-        Tuple2<CustomerBrokenException, String> out = TestUtil.getFromOut(() ->
-                assertThrows(
+        assertThat(
+                getSoutFrom(() -> assertThrows(
                         CustomerBrokenException.class,
-                        () -> bar.sellSquishee(person)));
-
-        assertThat("Customer is not broken ", out._2, containsString("Hmmm...\n"));
+                        () -> bar.sellSquishee(person))),
+                containsString("Hmmm...\n"));
     }
 }

@@ -14,14 +14,14 @@ import java.util.function.Supplier;
 @UtilityClass
 public class TestUtil {
 
-    public String getFromOut(Runnable runnable) {
+    public String getSoutFrom(Runnable runnable) {
         return withProxyForOut(soutExtractor -> {
             runnable.run();
             return soutExtractor.get();
         });
     }
 
-    public <T> Tuple2<T, String> getFromOut(Supplier<T> supplier) {
+    public <T> Tuple2<T, String> getResultAndSoutFrom(Supplier<T> supplier) {
         return withProxyForOut(soutExtractor -> Tuple.of(
                 supplier.get(), soutExtractor.get()));
     }
