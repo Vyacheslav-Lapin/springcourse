@@ -23,6 +23,13 @@
             <version>LATEST</version>
         </dependency>
 
+        <!--Spring JDBC-->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-jdbc</artifactId>
+            <version>LATEST</version>
+        </dependency>
+
         <!-- AOP -->
         <dependency>
             <groupId>org.aspectj</groupId>
@@ -81,10 +88,6 @@
             <version>LATEST</version>
         	<scope>test</scope>
         </dependency>
-        <!--driver org.h2.Driver-->
-        <!--url jdbc:h2:mem:test;DB_CLOSE_DELAY=-1-->
-        <!--<dependency><groupId>com.zaxxer</groupId><artifactId>HikariCP</artifactId><version>LATEST</version></dependency>-->
-
         
         <!-- TEST (JUnit 5 & Mockito) -->
         <dependency>

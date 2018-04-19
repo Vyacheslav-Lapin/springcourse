@@ -14,19 +14,19 @@ import java.util.function.Supplier;
 @UtilityClass
 public class TestUtil {
 
-    public String getSoutFrom(Runnable runnable) {
+    public static String getSoutFrom(Runnable runnable) {
         return withProxyForOut(soutExtractor -> {
             runnable.run();
             return soutExtractor.get();
         });
     }
 
-    public <T> Tuple2<T, String> getResultAndSoutFrom(Supplier<T> supplier) {
+    private static <T> Tuple2<T, String> getResultAndSoutFrom(Supplier<T> supplier) {
         return withProxyForOut(soutExtractor -> Tuple.of(
                 supplier.get(), soutExtractor.get()));
     }
 
-    private <T> T withProxyForOut(Function<Supplier<String>, T> soutExtractorMapper) {
+    private static  <T> T withProxyForOut(Function<Supplier<String>, T> soutExtractorMapper) {
         val realOut = System.out;
         val out = new ByteArrayOutputStream();
 
