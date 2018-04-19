@@ -1,6 +1,7 @@
 package lab.model;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Component;
 
 @Data
 @NoArgsConstructor
+@EqualsAndHashCode(exclude = "id")
 @Component//("country")
 public class SimpleCountry implements Country {
 

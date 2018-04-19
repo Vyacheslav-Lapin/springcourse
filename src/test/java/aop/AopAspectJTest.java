@@ -4,7 +4,6 @@ import ioc.JavaConfig;
 import lab.model.ApuBar;
 import lab.model.Bar;
 import lab.model.Person;
-import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -28,8 +27,13 @@ class AopAspectJTest {
     @Autowired
     Person person;
 
-    String squisheeAndOut = TestUtil.getSoutFrom(() ->
-            bar.sellSquishee(person));
+    String squisheeAndOut;
+
+    @BeforeEach
+    void setUp() {
+        squisheeAndOut = TestUtil.getSoutFrom(() ->
+                bar.sellSquishee(person));
+    }
 
     @Test
     void testBeforeAdvice() {
