@@ -36,7 +36,7 @@ class JdbcTest {
 
     @BeforeEach
     void setUp() {
-        expectedCountryListStartsWithA = initExpectedCountryLists();
+        initExpectedCountryLists();
         countryDao.loadCountries();
     }
 
@@ -67,32 +67,38 @@ class JdbcTest {
         assertEquals(countryWithChangedName, countryDao.getCountryByCodeName("RU"));
     }
 
-    private List<Country> initExpectedCountryLists() {
+    private void initExpectedCountryLists() {
         List<Country> list = new ArrayList<>();
-        List<Country> countries = expectedCountryList;
         int bound = CountryDao.COUNTRY_INIT_DATA.length;
         for (int i = 0; i < bound; i++) {
             Tuple2<Integer, String[]> intStringTuple = Tuple.of(i, CountryDao.COUNTRY_INIT_DATA[i]);
-            SimpleCountry simpleCountry = new SimpleCountry(
+            SimpleCountry country = new SimpleCountry(
                     intStringTuple._1,
                     intStringTuple._2[0],
                     intStringTuple._2[1]);
-            countries.add(simpleCountry);
+            list.add(country);
+        }
+        expectedCountryList = list;
+
+        List<Country> result = new ArrayList<>();
+        for (Country simpleCountry : expectedCountryList) {
             if (simpleCountry.getName().startsWith("A")) {
-                list.add(simpleCountry);
+                result.add(simpleCountry);
             }
         }
-        return list;
+        expectedCountryListStartsWithA = result;
     }
 
-//    private List<Country> initExpectedCountryLists() {
-//        return IntStream.range(0, CountryDao.COUNTRY_INIT_DATA.length)
+//    private void initExpectedCountryLists() {
+//        expectedCountryList = IntStream.range(0, CountryDao.COUNTRY_INIT_DATA.length)
 //                .mapToObj(i -> Tuple.of(i, CountryDao.COUNTRY_INIT_DATA[i]))
 //                .map(intStringTuple -> new SimpleCountry(
 //                        intStringTuple._1,
 //                        intStringTuple._2[0],
 //                        intStringTuple._2[1]))
-//                .peek(expectedCountryList::add)
+//                .collect(Collectors.toList());
+//
+//        expectedCountryListStartsWithA = expectedCountryList.stream()
 //                .filter(simpleCountry -> simpleCountry.getName().startsWith("A"))
 //                .collect(Collectors.toList());
 //    }
