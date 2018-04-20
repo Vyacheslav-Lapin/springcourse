@@ -41,6 +41,18 @@
             <version>LATEST</version>
         </dependency>
 
+        <!--Spring JPA/Hibernate-->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-orm</artifactId>
+            <version>LATEST</version>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>LATEST</version>
+        </dependency>
+
         <!-- COMMON LIBS (Log4J2 & Vavr) -->
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
@@ -66,13 +78,6 @@
             <artifactId>checker-framework</artifactId>
             <version>LATEST</version>
             <scope>provided</scope>
-        </dependency>
-
-        <!-- Hibernate -->
-        <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-core</artifactId>
-            <version>LATEST</version>
         </dependency>
 
         <!--Spring JDBC-->
