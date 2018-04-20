@@ -1,4 +1,4 @@
-package ioc;
+package lab.ioc;
 
 import lab.model.Person;
 import lab.model.SimpleContact;
@@ -15,11 +15,11 @@ import static org.hamcrest.core.Is.is;
 class HelloWorldTest {
 
     static AnnotationConfigApplicationContext context =
-            new AnnotationConfigApplicationContext("ioc");
+            new AnnotationConfigApplicationContext("lab");
 
     static Person getExpectedPerson() {
         return new UsualPerson(
-                1,
+                1L,
                 "John Smith",
                 new SimpleCountry(1, "Russia", "RU"),
                 35,

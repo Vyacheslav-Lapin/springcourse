@@ -3,7 +3,7 @@ package lab.model;
 import java.util.List;
 
 public interface Person {
-    int getId();
+    long getId();
 
     String getName();
 

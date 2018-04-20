@@ -1,6 +1,7 @@
-package aop;
+package lab.aop;
 
-import ioc.JavaConfig;
+import lab.JavaConfig;
+import lab.TestUtil;
 import lab.model.ApuBar;
 import lab.model.Bar;
 import lab.model.Person;

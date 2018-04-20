@@ -1,6 +1,6 @@
-package aop;
+package lab.aop;
 
-import ioc.JavaConfig;
+import lab.JavaConfig;
 import lab.model.Bar;
 import lab.model.CustomerBrokenException;
 import lab.model.Person;
@@ -14,7 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import static aop.TestUtil.getSoutFrom;
+import static lab.TestUtil.getSoutFrom;
 import static lombok.AccessLevel.PRIVATE;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.StringContains.containsString;

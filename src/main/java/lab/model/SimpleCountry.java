@@ -3,22 +3,26 @@ package lab.model;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.experimental.FieldDefaults;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
+import static lombok.AccessLevel.PRIVATE;
+
 @Data
+@Component//("country")
 @NoArgsConstructor
 @EqualsAndHashCode(exclude = "id")
-@Component//("country")
+@FieldDefaults(level = PRIVATE)
 public class SimpleCountry implements Country {
 
-    private int id;
-    private String name;
-    private String codeName;
+    long id;
+    String name;
+    String codeName;
 
     @Autowired
-    public SimpleCountry(int id, @Qualifier("countryName") String name, String codeName) {
+    public SimpleCountry(long id, @Qualifier("countryName") String name, String codeName) {
         this.id = id;
         this.name = name;
         this.codeName = codeName;

@@ -9,7 +9,7 @@ import java.util.List;
 @Value
 @Component("person")
 public class UsualPerson implements Person {
-    int id;
+    long id;
     String name;
 
     Country country;

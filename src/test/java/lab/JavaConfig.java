@@ -1,13 +1,7 @@
-package ioc;
+package lab;
 
 import lab.model.Contact;
-import lab.model.Country;
 import lab.model.SimpleContact;
-import lab.model.SimpleCountry;
-import org.hibernate.SessionFactory;
-import org.hibernate.boot.MetadataSources;
-import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
-import org.hibernate.service.ServiceRegistry;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -17,7 +11,7 @@ import java.util.Arrays;
 import java.util.List;
 
 @Configuration
-@ImportResource("classpath*:jdbc.xml")
+@ImportResource("classpath*:jpa.xml")
 @ComponentScan({"lab.model", "lab.aop", "lab.dao"})
 public class JavaConfig {
 

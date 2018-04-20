@@ -1,4 +1,4 @@
-package aop;
+package lab;
 
 import io.vavr.Function0;
 import io.vavr.Tuple;
@@ -21,7 +21,7 @@ public class TestUtil {
         });
     }
 
-    private static <T> Tuple2<T, String> getResultAndSoutFrom(Supplier<T> supplier) {
+    private static  <T> Tuple2<T, String> getResultAndSoutFrom(Supplier<T> supplier) {
         return withProxyForOut(soutExtractor -> Tuple.of(
                 supplier.get(), soutExtractor.get()));
     }

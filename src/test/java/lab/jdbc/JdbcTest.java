@@ -1,9 +1,9 @@
-package jdbc;
+package lab.jdbc;
 
 import io.vavr.Tuple;
 import io.vavr.Tuple2;
-import ioc.JavaConfig;
-import lab.dao.CountryDao;
+import lab.JavaConfig;
+import lab.dao.jdbc.JdbcCountryDao;
 import lab.model.Country;
 import lab.model.SimpleCountry;
 import lombok.experimental.FieldDefaults;
@@ -22,13 +22,13 @@ import static lombok.AccessLevel.PRIVATE;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+@FieldDefaults(level = PRIVATE)
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = JavaConfig.class)
-@FieldDefaults(level = PRIVATE)
 class JdbcTest {
 
     @Autowired
-    CountryDao countryDao;
+    JdbcCountryDao jdbcCountryDao;
 
     List<Country> expectedCountryList = new ArrayList<>();
     List<Country> expectedCountryListStartsWithA;
@@ -37,13 +37,13 @@ class JdbcTest {
     @BeforeEach
     void setUp() {
         initExpectedCountryLists();
-        countryDao.loadCountries();
+        jdbcCountryDao.loadCountries();
     }
 
     @Test
     @DirtiesContext
     void testCountryList() {
-        List<Country> countryList = countryDao.getCountryList();
+        List<Country> countryList = jdbcCountryDao.getAllCountries();
         assertNotNull(countryList);
         assertEquals(expectedCountryList.size(), countryList.size());
         for (int i = 0; i < expectedCountryList.size(); i++)
@@ -53,7 +53,7 @@ class JdbcTest {
     @Test
     @DirtiesContext
     void testCountryListStartsWithA() {
-        List<Country> countryList = countryDao.getCountryListStartWith("A");
+        List<Country> countryList = jdbcCountryDao.getCountryListStartWith("A");
         assertNotNull(countryList);
         assertEquals(expectedCountryListStartsWithA.size(), countryList.size());
         for (int i = 0; i < expectedCountryListStartsWithA.size(); i++)
@@ -63,15 +63,16 @@ class JdbcTest {
     @Test
     @DirtiesContext
     void testCountryChange() {
-        countryDao.updateCountryName("RU", "Russia");
-        assertEquals(countryWithChangedName, countryDao.getCountryByCodeName("RU"));
+        jdbcCountryDao.updateCountryName("RU", "Russia");
+        assertEquals(countryWithChangedName, jdbcCountryDao.getCountryByCodeName("RU"));
     }
 
+//    @Benchmark
     private void initExpectedCountryLists() {
         List<Country> list = new ArrayList<>();
-        int bound = CountryDao.COUNTRY_INIT_DATA.length;
+        int bound = JdbcCountryDao.COUNTRY_INIT_DATA.length;
         for (int i = 0; i < bound; i++) {
-            Tuple2<Integer, String[]> intStringTuple = Tuple.of(i, CountryDao.COUNTRY_INIT_DATA[i]);
+            Tuple2<Integer, String[]> intStringTuple = Tuple.of(i, JdbcCountryDao.COUNTRY_INIT_DATA[i]);
             SimpleCountry country = new SimpleCountry(
                     intStringTuple._1,
                     intStringTuple._2[0],
@@ -89,6 +90,7 @@ class JdbcTest {
         expectedCountryListStartsWithA = result;
     }
 
+//    @Benchmark
 //    private void initExpectedCountryLists() {
 //        expectedCountryList = IntStream.range(0, CountryDao.COUNTRY_INIT_DATA.length)
 //                .mapToObj(i -> Tuple.of(i, CountryDao.COUNTRY_INIT_DATA[i]))
